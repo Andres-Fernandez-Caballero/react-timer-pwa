@@ -1,0 +1,35 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header {
+    font-size: larger;
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+
+.headerlogo {
+    animation: full-rotate 7s linear infinite;
+    color: orange;
+}
+
+.headerTitle {
+    color: sandybrown;
+}
+
+@keyframes full-rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+
