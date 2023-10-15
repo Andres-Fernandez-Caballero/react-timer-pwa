@@ -1,0 +1,70 @@
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.huge {
+    font-size: 15em;
+}
+
+.large {
+    font-size: 9em;
+}
+
+.medium {
+    font-size: 6em;
+}
+
+.dot-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dot {
+    font-size: 2em;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin: 0 5px;
+    font-size: 8em;
+}
+
+@media screen and (max-width: 768px) {
+    .huge {
+        font-size: 10em;
+    }
+
+    .large {
+        font-size: 6em;
+    }
+
+    .medium {
+        font-size: 4em;
+    }
+
+    .dot {
+        font-size: 1em;
+    }
+}
+    
+@media screen and (max-width: 480px) {
+    .huge {
+        font-size: 7em;
+    }
+
+    .large {
+        font-size: 4em;
+    }
+
+    .medium {
+        font-size: 3em;
+    }
+
+    .dot {
+        font-size: 0.5em;
+    }
+}
+    

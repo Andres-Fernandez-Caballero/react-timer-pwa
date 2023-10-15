@@ -1,7 +1,7 @@
 import styles from './nabar.module.css'
 
 const Navbar = () => (
-  <nav className={styles.container}>
+  <div className={styles.container}>
     <header className={styles.header}>
     <h2 className={styles.headerTitle}>
       ElectricTimer
@@ -12,6 +12,6 @@ const Navbar = () => (
     <menu>
         <a href="http://github">Github</a>
     </menu>
-  </nav>
+  </div>
 );
 export default Navbar;

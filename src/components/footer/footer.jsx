@@ -1,7 +1,7 @@
 const Footer = () => (
-    <footer>    
-        <p>© {(new Date()).getFullYear()} - <span>Electricat 🩵    🐈</span> Todos los derechos reservados</p>
-    </footer>
+    <>    
+        <p>© {(new Date()).getFullYear()} - <span>Electricat 🩵    🐈</span> <q> Todos los derechos reservados</q></p>
+    </>
 )
 
 export default Footer;
