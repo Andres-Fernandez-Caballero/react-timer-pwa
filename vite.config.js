@@ -1,49 +1,51 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import { VitePwa } from "vite-plugin-pwa";
+import { VitePWA } from "vite-plugin-pwa";
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
-    VitePwa({
+    VitePWA({
       // add this to cache all the imports
       workbox: {
         globPatterns: ["**/*"],
       },
+      manifest: {
+        theme_color: "#f69435",
+        background_color: "#f69435",
+        display: "browser",
+        scope: "/",
+        start_url: "/",
+        name: "ElectriTimer",
+        short_name: "Electricat",
+        description: "temporizaror cronometro ",
+        icons: [
+          {
+            src: "/icon-192x192.png",
+            sizes: "192x192",
+            type: "image/png",
+          },
+          {
+            src: "/icon-256x256.png",
+            sizes: "256x256",
+            type: "image/png",
+          },
+          {
+            src: "/icon-384x384.png",
+            sizes: "384x384",
+            type: "image/png",
+          },
+          {
+            src: "/icon-512x512.png",
+            sizes: "512x512",
+            type: "image/png",
+          },
+        ],
+      },
       // add this to cache all the
       // static assets in the public folder
       includeAssets: ["**/*"],
-      theme_color: "#f69435",
-      background_color: "#f69435",
-      display: "browser",
-      scope: "/",
-      start_url: "/",
-      name: "ElectriTimer",
-      short_name: "Electricat",
-      description: "temporizaror cronometro ",
-      icons: [
-        {
-          src: "/icon-192x192.png",
-          sizes: "192x192",
-          type: "image/png",
-        },
-        {
-          src: "/icon-256x256.png",
-          sizes: "256x256",
-          type: "image/png",
-        },
-        {
-          src: "/icon-384x384.png",
-          sizes: "384x384",
-          type: "image/png",
-        },
-        {
-          src: "/icon-512x512.png",
-          sizes: "512x512",
-          type: "image/png",
-        },
-      ],
     }),
   ],
 });
