@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
+import styles from "./container.module.css"
 
 const Container = () => {
   const [time, setTime] = useState(0);
@@ -19,11 +20,7 @@ const Container = () => {
   return (
     <main>
       <section
-        style={{
-          display: "flex",
-          alignItems: "baseline",
-          justifyContent: "center",
-        }}
+        className={styles.container}
       >
         <Hour time={time} />
         <Dot />
@@ -42,7 +39,7 @@ const Container = () => {
 
 const Dot = () => (
   <div>
-    <p style={{ fontSize: "8em", fontWeight: "bolder" }}>:</p>
+    <p className={styles.dot}>:</p>
   </div>
 );
 
@@ -51,19 +48,19 @@ const ItemTimeContainer = ({ itemTime }) => (
 );
 
 const Hour = ({ time }) => (
-  <span style={{ fontSize: "15em" }}>
+  <span className={styles.hour}>
     <ItemTimeContainer itemTime={Math.floor(time / 3600)} />
   </span>
 );
 
 const Minute = ({ time }) => (
-  <span style={{ fontSize: "9em" }}>
+  <span className={styles.minutes}>
     <ItemTimeContainer itemTime={Math.floor((time % 3600) / 60)} />
   </span>
 );
 
 const Second = ({ time }) => (
-  <span style={{ fontSize: "6em", fontWeight: "normal" }}>
+  <span className={styles.seconds}>
     <ItemTimeContainer itemTime={time % 60} />
   </span>
 );
