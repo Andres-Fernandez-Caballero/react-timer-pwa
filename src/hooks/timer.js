@@ -1,45 +1,69 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
+
+
+const getHours = (timer) => Math.floor(timer / 3600000);
+
+const getMinutes = (timer) => Math.floor((timer / 60000) % 60);
+
+const getSeconds = (timer) => Math.floor((timer / 1000) % 60 );
+
+const getCentesimas = (timer) => Math.floor((timer % 1000) / 10);
+
+
 
 export const useTimer = () => {
-    const ONE_CENT_SECONT = 10;
-    const [time, setTime] = useState(0);
-    const [isRunning, setIsRunning] = useState(false);
-    useEffect(() => {
-      if(!isRunning) return;
+  const TIME_FACTOR = 10; //millisecons
+  const INIT_TIMER_STATE = 0;
+
+  const [startTime, setStartTime] = useState(null);
+  const [timer, setTimer] = useState(INIT_TIMER_STATE);
+  const [isRunning, setIsRunning] = useState(false);
   
-      const interval = setInterval(() => {
-        setTime((time) => (time + 1) % 100);
-      }, ONE_CENT_SECONT);
-      return () => clearInterval(interval);
+  const startTimer = useCallback(() => {
+    setStartTime(performance.now() - timer);
+    setIsRunning(true);
+  }, [timer])
 
-
-    },[isRunning, time]);
-    
-    const start = () => setIsRunning(true);
-    const pause = () => setIsRunning(false);
-    const reset = () => setTime(0);
-
-
-    return {
-        time,
-        start,
-        pause,
-        reset,
-        isRunning,
+  const stopTimer = useCallback( () => {
+    if (isRunning){
+      setTimer(performance.now() - startTime);
+      setIsRunning(false);
     }
-}
+  }, [isRunning, startTime])
 
-export const getHours = (millisecons) => (
-    Math.floor(millisecons / 3600)
-)
-
-export const getMinutes = (millisecons) => (
-    Math.floor(millisecons / 60)
-)
-
-export const getSeconds = (millisecons) => (
-    Math.floor(millisecons / 100)
-)
+  const resetTimer = useCallback(() => {
+    setStartTime(null);
+    setTimer(INIT_TIMER_STATE);
+    setIsRunning(false);
+  }, [])
 
 
+  const start = () => startTimer();
+  const pause = () => stopTimer();
+  const reset = () => resetTimer();
+
+  useEffect( () => {
+    let intervalId
+    if( isRunning) {
+      intervalId = setInterval(() => {
+        setTimer(performance.now() - startTime);
+      }, TIME_FACTOR);
+    }else {
+      clearInterval(intervalId);
+    }
+
+    return () => clearInterval(intervalId);
+  }, [isRunning, startTime])
+
+  return {
+    getHours: getHours(timer),
+    getMinutes: getMinutes(timer),
+    getSeconds: getSeconds(timer),
+    getCentesimas: getCentesimas(timer),
+    start,
+    pause,
+    reset,
+    isRunning,
+  };
+};
 
