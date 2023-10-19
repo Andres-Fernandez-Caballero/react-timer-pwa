@@ -1,14 +1,15 @@
 .container {
-    padding: 0 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: var(--color-acent);
+    color: var(--color-acent-ligth);
+    padding: 0 2rem;
 }
 
 .header {
     font-size: larger;
     display: flex;
-
     justify-content: center;
     align-items: center;
     gap: 1rem;
@@ -17,11 +18,10 @@
 
 .headerlogo {
     animation: full-rotate 7s linear infinite;
-    color: orange;
 }
 
 .headerTitle {
-    color: sandybrown;
+  font-size: large;
 }
 
 @keyframes full-rotate {

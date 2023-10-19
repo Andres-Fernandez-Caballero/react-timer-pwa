@@ -1,32 +1,32 @@
 import styles from "./container.module.css"
-import { useTimer, getHours, getMinutes, getSeconds } from "../../hooks/timer";
+import { useTimer } from "../../hooks/timer";
 import HugeTimeContainer from "../timer/hugeTimeContainer";
 import LargeTimeContainer from "../timer/largeTimeContainer";
 import MediumTimeContainer from "../timer/mediumTimeContainer";
 
 const Container = () => {
 
-  const {isRunning, pause, reset, start, time} = useTimer();
+  const {pause, reset, start, getCentesimas, getSeconds, getMinutes} = useTimer();
   const handleOnStart = () => start();
   const handleOnPause = () => pause();
   const handleOnReset = () => reset();
 
   return (
-    <>
+    <div className={styles.container}>
       <section
-        className={styles.container}
+        className={styles.clockDisplay}
       >
-        <HugeTimeContainer time={getHours(time)} />
-        <LargeTimeContainer time={getMinutes(time)} />
-        <MediumTimeContainer time={time} />
+        <HugeTimeContainer time={getMinutes} /><span style={{ fontSize:'3rem' }}>:</span>
+        <LargeTimeContainer time={getSeconds} /><span style={{ fontSize:'3rem' }}>:</span>
+        <MediumTimeContainer time={getCentesimas} />
 
       </section>
-      <menu style={{ display: 'flex', gap:'3rem', justifyContent:'center' }}>
+      <menu className={styles.menu}>
         <button onClick={handleOnStart}>Start</button>
         <button onClick={handleOnPause}>Stop</button>
         <button onClick={handleOnReset}>Reset</button>
       </menu>
-    </>
+    </div>
   );
 };
 
